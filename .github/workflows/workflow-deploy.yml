@@ -1,0 +1,28 @@
+name: Github Action Deploy workflow
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Deploy
+        uses: actions/deploy-pages@v3
+        with:
+          publish_dir: ./build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          name: build
