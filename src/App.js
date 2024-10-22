@@ -21,6 +21,8 @@ function App() {
         </a>
       </header> */}
 
+      <p>Chrome Dino Game</p>
+
       <ChromeDinoGame />
     </div>
   );
