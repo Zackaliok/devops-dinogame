@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - gh-pages
+  pull_request:
+    branches:
+      - gh-pages
 
 jobs:
   deploy:
@@ -17,12 +20,15 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Deploy
-        uses: actions/deploy-pages@v3
-        with:
-          publish_dir: ./build
+      - name: predeploy
+        run: npm run predeploy
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           name: build
+
+      - name: Deploy
+        uses: actions/deploy-pages@v3
+        with:
+          publish_dir: ./build
